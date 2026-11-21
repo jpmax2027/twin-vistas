@@ -1,0 +1,200 @@
+/* Twin Vistas — page and HUD styling. Warm lamplight on deep night blue,
+   matching the painted scenes on the canvas below. */
+
+:root {
+  --ink: #f3e9d2;
+  --ink-dim: #b9ac8d;
+  --night: #10182e;
+  --night-2: #182242;
+  --gold: #f2b544;
+  --gold-deep: #c97b2d;
+  --teal: #3ec6b8;
+  --danger: #ef6461;
+  --panel: #1c2748;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(1200px 700px at 50% -10%, var(--night-2), var(--night));
+  color: var(--ink);
+  font-family: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+  min-height: 100%;
+}
+
+#hud {
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+  flex-wrap: wrap;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 14px 10px 10px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  letter-spacing: 0.5px;
+  color: var(--gold);
+  text-shadow: 0 2px 10px rgba(242, 181, 68, 0.35);
+}
+
+.brand p {
+  margin: 2px 0 0;
+  color: var(--ink-dim);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--panel);
+  border: 1px solid rgba(242, 181, 68, 0.25);
+  border-radius: 10px;
+  padding: 6px 14px;
+  min-width: 128px;
+}
+
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.stat strong { font-size: 22px; line-height: 1.15; }
+.stat span:last-child { font-size: 13px; color: var(--teal); }
+
+#found-stat strong { color: #fff; }
+#to-go { color: var(--gold); font-weight: 600; }
+
+#timer-track {
+  height: 7px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+#timer-bar {
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  transition: width 0.2s linear;
+}
+
+#timer-stat.low #clock { color: var(--danger); }
+#timer-stat.low #timer-bar { background: var(--danger); }
+
+#streak { color: var(--gold-deep); font-weight: 700; min-height: 16px; }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  color: var(--night);
+  background: linear-gradient(180deg, #ffd97a, var(--gold));
+  border: 1px solid var(--gold-deep);
+  border-radius: 9px;
+  padding: 9px 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+button:hover:not(:disabled) { filter: brightness(1.07); }
+button:disabled { opacity: 0.45; cursor: default; }
+
+#stage {
+  position: relative;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+#board {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
+#banner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  background: rgba(10, 14, 28, 0.72);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+#banner[hidden] { display: none; }
+
+#banner h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 44px;
+  color: var(--gold);
+}
+
+#banner p {
+  margin: 0;
+  max-width: 560px;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--ink);
+  white-space: pre-line;
+}
+
+#banner-btn { font-size: 18px; padding: 12px 26px; margin-top: 8px; }
+
+#help {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 8px 12px 22px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  text-align: center;
+}
+
+#help em { color: var(--ink); font-style: normal; font-weight: 600; }
+
+kbd {
+  background: var(--panel);
+  border: 1px solid rgba(243, 233, 210, 0.35);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  padding: 0 5px;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+/* Read aloud, never shown: the line screen readers announce. */
+#status {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
